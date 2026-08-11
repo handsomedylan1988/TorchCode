@@ -67,7 +67,10 @@ def check(task_id: str) -> None:
 
     for i, test in enumerate(tests, 1):
         test_code = test["code"].replace("{fn}", fn_name)
-        namespace: dict[str, Any] = {fn_name: user_fn}
+        # Keep helpers defined alongside the submitted function available to tests.
+        # Some architecture tasks intentionally expose a small companion API.
+        namespace: dict[str, Any] = dict(user_ns)
+        namespace[fn_name] = user_fn
 
         t0 = time.perf_counter()
         try:

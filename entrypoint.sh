@@ -5,6 +5,10 @@ NOTEBOOKS_DIR=/app/notebooks
 TEMPLATES_DIR=/app/templates
 SOLUTIONS_DIR=/app/solutions
 
+# Kernels start in /app/notebooks. Put the bind-mounted project source ahead
+# of the installed wheel so newly added judge tasks are available immediately.
+export PYTHONPATH="/app${PYTHONPATH:+:$PYTHONPATH}"
+
 mkdir -p "$NOTEBOOKS_DIR"
 mkdir -p "$NOTEBOOKS_DIR/_original_templates"
 

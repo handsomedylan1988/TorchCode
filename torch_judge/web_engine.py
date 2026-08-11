@@ -73,7 +73,11 @@ def execute_code(task_id: str, user_code: str) -> Dict[str, Any]:
     # 2. Run each test against the user's function
     for i, test in enumerate(tests, 1):
         test_code = test["code"].replace("{fn}", fn_name)
-        test_namespace: Dict[str, Any] = {fn_name: user_fn}
+        # Preserve companion helpers from the submitted code (for example, a
+        # sampler paired with its training-loss function) while isolating each
+        # individual test from mutations made by other tests.
+        test_namespace: Dict[str, Any] = dict(namespace)
+        test_namespace[fn_name] = user_fn
         
         test_stdout = io.StringIO()
         test_stderr = io.StringIO()

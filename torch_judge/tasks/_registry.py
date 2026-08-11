@@ -21,6 +21,16 @@ for _info in pkgutil.iter_modules([_pkg_dir]):
 
 
 def get_task(task_id: str) -> dict[str, Any] | None:
+    # Notebooks can keep a Python kernel alive while new task files are mounted
+    # into the project. Load a requested task lazily so a kernel restart is not
+    # required just to use a newly added exercise.
+    if task_id not in TASKS:
+        try:
+            _mod = importlib.import_module(f"{__package__}.{task_id}")
+        except ModuleNotFoundError:
+            return None
+        if hasattr(_mod, "TASK"):
+            TASKS[task_id] = _mod.TASK
     return TASKS.get(task_id)
 
 

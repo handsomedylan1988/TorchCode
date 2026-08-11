@@ -27,7 +27,7 @@ Practice implementing operators and architectures from scratch — the exact ski
 [![GitHub stars](https://img.shields.io/github/stars/duoan/TorchCode?style=social)](https://github.com/duoan/TorchCode)
 [![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-TorchCode-blue?style=flat-square&logo=github)](https://ghcr.io/duoan/torchcode)
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-TorchCode-blue?style=flat-square)](https://huggingface.co/spaces/duoan/TorchCode)
-![Problems](https://img.shields.io/badge/problems-41-orange?style=flat-square)
+![Problems](https://img.shields.io/badge/problems-43-orange?style=flat-square)
 ![GPU](https://img.shields.io/badge/GPU-not%20required-brightgreen?style=flat-square)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=duoan/TorchCode&type=Date)](https://star-history.com/#duoan/TorchCode&Date)
@@ -189,6 +189,15 @@ If you're interviewing for any role touching LLMs or Transformers, expect at lea
 | 33 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/33_beam_search.ipynb" target="_blank">Beam Search</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/33_beam_search.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `beam_search(log_prob_fn, ...)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | Hypothesis expansion, pruning, eos handling |
 | 34 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/34_speculative_decoding.ipynb" target="_blank">Speculative Decoding</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/34_speculative_decoding.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `speculative_decode(target, draft, ...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Accept/reject, draft model acceleration |
 
+### 🎨 Generative Models — From Diffusion to Flows
+
+Start here after the fundamentals, Conv2d, attention, and basic training loops. The Stable Diffusion exercise introduces the latent-diffusion pipeline and deterministic sampling; Flow Matching then reframes generation as learning and integrating a velocity field.
+
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 42 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/42_stable_diffusion.ipynb" target="_blank">Stable Diffusion Sampling Step</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/42_stable_diffusion.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `stable_diffusion_step(...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Latent diffusion, CFG, DDIM scheduler |
+| 43 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/43_flow_matching.ipynb" target="_blank">Flow Matching</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/43_flow_matching.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `flow_matching_loss`, `flow_matching_sample` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Vector fields, straight paths, Euler integration |
+
 ### 🔬 Advanced — Differentiators
 
 | # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
@@ -245,7 +254,7 @@ status()                    # Progress dashboard — solved / attempted / todo
 | **1** | 🧱 Foundations | ReLU → Softmax → CE Loss → Dropout → Embedding → GELU → Linear → LayerNorm → BatchNorm → RMSNorm → SwiGLU MLP → Conv2d | 2–3 hrs |
 | **2** | 🧠 Attention Deep Dive | SDPA → MHA → Cross-Attn → Causal → GQA → KV Cache → Sliding Window → RoPE → Linear Attn → Flash Attn | 3–4 hrs |
 | **3** | 🏗️ Architecture + Training | GPT-2 Block → LoRA → MoE → ViT Patch → Adam → Cosine LR → Grad Clip → Grad Accumulation → Kaiming Init | 3–4 hrs |
-| **4** | 🎯 Inference + Advanced | Top-k/p Sampling → Beam Search → Speculative Decoding → BPE → INT8 Quant → DPO Loss → GRPO Loss → PPO Loss → OPD Loss + speed run | 3–4 hrs |
+| **4** | 🎯 Inference + Advanced | Top-k/p Sampling → Beam Search → Speculative Decoding → Stable Diffusion → Flow Matching → BPE → INT8 Quant → DPO Loss → GRPO Loss → PPO Loss → OPD Loss + speed run | 3–4 hrs |
 
 ---
 
