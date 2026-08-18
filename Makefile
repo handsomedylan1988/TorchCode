@@ -1,10 +1,12 @@
 COMPOSE ?= $(shell \
-	if command -v docker >/dev/null 2>&1; then \
+	if docker compose version >/dev/null 2>&1; then \
 		echo "docker compose"; \
-	elif command -v podman >/dev/null 2>&1; then \
+	elif command -v docker-compose >/dev/null 2>&1; then \
+		echo "docker-compose"; \
+	elif podman compose version >/dev/null 2>&1; then \
 		echo "podman compose"; \
-	else \
-		echo "docker compose"; \
+	elif command -v podman-compose >/dev/null 2>&1; then \
+		echo "podman-compose"; \
 	fi)
 CONTAINER ?= $(shell \
 	if command -v docker >/dev/null 2>&1; then \
@@ -17,7 +19,16 @@ CONTAINER ?= $(shell \
 
 .PHONY: run run-build stop clean setup-local badges
 
+define require-compose
+	@if [ -z "$(COMPOSE)" ]; then \
+		echo "Error: Docker Compose or Podman Compose is required."; \
+		echo "Install Docker Desktop (which includes Docker Compose), then run: make run"; \
+		exit 1; \
+	fi
+endef
+
 run:
+	$(require-compose)
 	@echo "Using compose backend: $(COMPOSE)"
 	@echo "Pulling prebuilt image (if available)..."
 	@pull_status=0; \
@@ -44,6 +55,7 @@ run:
 	@echo ""
 
 run-build:
+	$(require-compose)
 	@echo "Using compose backend: $(COMPOSE)"
 	$(COMPOSE) up --build -d
 	@echo ""
@@ -52,10 +64,12 @@ run-build:
 	@echo ""
 
 stop:
+	$(require-compose)
 	@echo "Using compose backend: $(COMPOSE)"
 	$(COMPOSE) down
 
 clean:
+	$(require-compose)
 	@echo "Using compose backend: $(COMPOSE)"
 	$(COMPOSE) down -v
 	rm -f data/progress.json

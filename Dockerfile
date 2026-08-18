@@ -62,6 +62,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
       torch --index-url https://download.pytorch.org/whl/cpu && \
     pip install --no-cache-dir \
       numpy \
+      matplotlib \
       /tmp/wheels/*.whl && \
     rm -rf /tmp/wheels
 
